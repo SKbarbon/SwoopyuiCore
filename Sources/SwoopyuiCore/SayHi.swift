@@ -9,6 +9,7 @@ import Foundation
 
 
 public struct SayHi {
+    public init () {}
     public func sayHi () -> String {
         return "Hola!"
     }
