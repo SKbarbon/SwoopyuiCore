@@ -19,7 +19,7 @@ struct ViewGenerator: View {
             }
             
             else {
-                Text("SwoopyUI have no view named \(subviewData.name!)")
+                Text("SwoopyUI have no view named '\(subviewData.name ?? "nil")'")
                     .foregroundStyle(.red)
             }
         }
