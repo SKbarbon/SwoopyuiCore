@@ -76,6 +76,7 @@ public struct SwoopyuiInitApp: View {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
                     } else {
+                        print(u)
                         hostUpdates.append(u)
                     }
                 }
