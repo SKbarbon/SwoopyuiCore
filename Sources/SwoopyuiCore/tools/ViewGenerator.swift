@@ -27,6 +27,9 @@ struct ViewGenerator: View {
                     updateSubviewProps(updat: hostUpdates[0])
                 } else {
                     print("Unknown update: \(hostUpdates[0])")
+                    if hostUpdates[0].action == nil {
+                        hostUpdates.remove(at: 0)
+                    }
                 }
             }
         }
