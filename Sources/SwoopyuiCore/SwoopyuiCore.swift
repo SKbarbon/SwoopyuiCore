@@ -6,6 +6,7 @@ import SwiftUI
 
 
 public struct SwoopyuiInitApp: View {
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var hostPort : Int
     
     @State var appStarted : Bool = false // This will be true after running host's target function.
@@ -22,6 +23,9 @@ public struct SwoopyuiInitApp: View {
                 ForEach (subviews, id: \.update_id) {sbv in
                     ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates)
                 }
+            }
+            .onReceive(timer){_ in
+                httpGetUpdatesRequest()
             }
         } else {
             HStack {
