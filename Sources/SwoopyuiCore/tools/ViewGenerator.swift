@@ -16,6 +16,8 @@ struct ViewGenerator: View {
                 TheTextView(subviewData: $subviewData)
             } else if subviewData.name == "VStack" {
                 TheVstackView (subviewData: $subviewData, subviewupdates: $hostUpdates)
+            } else if subviewData.name == "NavigationSplitView" {
+                TheNavigationSplitView(subviewData: $subviewData, subviewupdates: $hostUpdates)
             }
         }
         .onChange (of: hostUpdates){_ in
