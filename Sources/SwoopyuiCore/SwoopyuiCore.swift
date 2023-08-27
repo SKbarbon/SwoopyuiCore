@@ -8,6 +8,8 @@ import SwiftUI
 public struct SwoopyuiInitApp: View {
     @State var hostPort : Int
     
+    @State var startApp : Bool = false // This will be true after running host's target function.
+    
     @State var subviews: [SubView] = [SubView()]
     @State var hostUpdates : [SubViewUpdateRequest] = [SubViewUpdateRequest()]
     
@@ -21,12 +23,15 @@ public struct SwoopyuiInitApp: View {
             }
         }
         .onAppear() {
+            if (startApp == false) {
+                runHostTargetFunction(port: hostPort)
+            }
             httpGetUpdatesRequest()
         }
     }
     func httpGetUpdatesRequest () {
         // Create a URL
-        if let url = URL(string: getHostUrl(port: hostPort)) {
+        if let url = URL(string: getHostUrl(port: hostPort, target: "get_updates")) {
             // Create a URLSession
             let session = URLSession.shared
             
