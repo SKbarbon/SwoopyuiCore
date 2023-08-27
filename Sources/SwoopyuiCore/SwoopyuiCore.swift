@@ -17,17 +17,21 @@ public struct SwoopyuiInitApp: View {
         self._hostPort = State(initialValue: hostPort)
     }
     public var body: some View {
-        VStack {
-            ForEach (subviews, id: \.update_id) {sbv in
-                ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates)
+        if appStarted {
+            VStack {
+                ForEach (subviews, id: \.update_id) {sbv in
+                    ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates)
+                }
             }
-        }
-        .onAppear() {
-            if (appStarted == false) {
+        } else {
+            HStack {
+                Text("Connecting to host..")
+                ProgressView()
+            }
+            .onAppear() {
                 runHostTargetFunction(port: hostPort)
                 appStarted = true
             }
-            httpGetUpdatesRequest()
         }
     }
     func httpGetUpdatesRequest () {
@@ -45,6 +49,7 @@ public struct SwoopyuiInitApp: View {
                 
                 if let data = data {
                     if let stringData = String(data: data, encoding: .utf8) {
+                        print(stringData)
                         loadJsonOfUpdateRequest(content: stringData)
                     }
                 }
