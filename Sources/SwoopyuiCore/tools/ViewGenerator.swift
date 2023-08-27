@@ -36,7 +36,6 @@ struct ViewGenerator: View {
     }
     func updateSubviewProps (updat:SubViewUpdateRequest) {
         if subviewData.sub_views != [] && subviewData.sub_views != nil {
-            print("This id is matched!")
             var newSubviewsList : [SubView] = []
             for sv in subviewData.sub_views! {
                 if sv.ID == updat.subview_data?.ID {
