@@ -72,16 +72,18 @@ public struct SwoopyuiInitApp: View {
             do {
                 // Decode JSON data into the Person struct
                 let jsonProduct = try JSONDecoder().decode(NewHostUpdates.self, from: jsonData)
+                var num = 0
                 for u in jsonProduct.updts! {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
                     }else if u.action == "update_subview" {
-                        if updateSubviewProps(updat: u) == false {
+                        if updateSubviewProps(updat: u, num: num) == false {
                             hostUpdates.append(u)
                         }
                     } else {
                         hostUpdates.append(u)
                     }
+                    num = num + 1
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
@@ -90,13 +92,14 @@ public struct SwoopyuiInitApp: View {
             print("Invalid JSON data")
         }
     }
-    func updateSubviewProps (updat:SubViewUpdateRequest) -> Bool{
+    func updateSubviewProps (updat:SubViewUpdateRequest, num:Int) -> Bool{
         var newSubviewsList : [SubView] = []
         var foundIt = false
         for sv in subviews {
             if sv.ID == updat.subview_data?.ID {
                 newSubviewsList.append(updat.subview_data!)
                 foundIt = true
+                hostUpdates.remove(at: num)
             } else {
                 newSubviewsList.append(sv)
             }
