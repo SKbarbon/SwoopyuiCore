@@ -22,4 +22,6 @@ struct SubViewProps : Decodable, Equatable {
     var content: String?
     var color: String?
     var size: Int?
+    var title: String?
+    var detail_title: String?
 }

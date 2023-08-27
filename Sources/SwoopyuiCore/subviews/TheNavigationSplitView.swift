@@ -15,10 +15,12 @@ struct TheNavigationSplitView: View {
             ForEach (subviewData.sub_views!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates)
             }
+            .navigationTitle("\(subviewData.props?.title ?? "")")
         } detail: {
             ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates)
             }
+            .navigationTitle("\(subviewData.props?.detail_title ?? "")")
         }
     }
 }
