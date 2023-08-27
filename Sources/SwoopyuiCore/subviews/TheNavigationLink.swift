@@ -13,11 +13,11 @@ struct TheNavigationLink: View {
     @State var hostPort : String
     var body: some View {
         NavigationLink (destination: {
-            ForEach (subviewData.sub_views!, id: \.update_id) {subv in
+            ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
             }
         }){
-            ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
+            ForEach (subviewData.sub_views!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
             }
         }
