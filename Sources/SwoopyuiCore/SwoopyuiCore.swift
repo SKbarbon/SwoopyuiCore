@@ -98,7 +98,6 @@ public struct SwoopyuiInitApp: View {
             }
         }
         subviews = newSubviewsList
-        hostUpdates.remove(at: 0)
     }
 }
 
