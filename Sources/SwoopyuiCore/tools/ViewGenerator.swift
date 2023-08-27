@@ -38,7 +38,6 @@ struct ViewGenerator: View {
         if subviewData.sub_views != [] && subviewData.sub_views != nil {
             var newSubviewsList : [SubView] = []
             for sv in subviewData.sub_views! {
-                print(sv.ID)
                 if sv.ID == updat.subview_data?.ID {
                     newSubviewsList.append(updat.subview_data!)
                     hostUpdates.remove(at: 0)

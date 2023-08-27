@@ -76,7 +76,9 @@ public struct SwoopyuiInitApp: View {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
                     }else if u.action == "update_subview" {
-                        updateSubviewProps(updat: u)
+                        if updateSubviewProps(updat: u) == false {
+                            hostUpdates.append(u)
+                        }
                     } else {
                         hostUpdates.append(u)
                     }
@@ -88,16 +90,19 @@ public struct SwoopyuiInitApp: View {
             print("Invalid JSON data")
         }
     }
-    func updateSubviewProps (updat:SubViewUpdateRequest) {
+    func updateSubviewProps (updat:SubViewUpdateRequest) -> Bool{
         var newSubviewsList : [SubView] = []
+        var foundIt = false
         for sv in subviews {
             if sv.ID == updat.subview_data?.ID {
                 newSubviewsList.append(updat.subview_data!)
+                foundIt = true
             } else {
                 newSubviewsList.append(sv)
             }
         }
         subviews = newSubviewsList
+        return foundIt
     }
 }
 
