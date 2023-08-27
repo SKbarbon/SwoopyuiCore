@@ -25,6 +25,8 @@ func getColorByString (color:String) -> Color {
         return Color.yellow
     } else if color == "purple" {
         return Color.purple
+    } else if color == "green" {
+        return Color.green
     }
     
     return Color.primary
