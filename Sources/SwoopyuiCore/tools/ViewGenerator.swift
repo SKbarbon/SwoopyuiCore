@@ -22,11 +22,9 @@ struct ViewGenerator: View {
             if hostUpdates != [] {
                 if hostUpdates[0].action == "add_subview" {
                     addNewSubview(updat:  hostUpdates[0])
-                    hostUpdates.remove(at: 0)
                 } else if hostUpdates[0].action == "update_subview" {
                     print(hostUpdates[0])
                     updateSubviewProps(updat: hostUpdates[0])
-                    hostUpdates.remove(at: 0)
                 } else {
                     print("Unknown update: \(hostUpdates[0])")
                 }
@@ -44,11 +42,13 @@ struct ViewGenerator: View {
                 }
             }
             subviewData.sub_views = newSubviewsList
+            hostUpdates.remove(at: 0)
         }
     }
     func addNewSubview (updat:SubViewUpdateRequest) {
         if Int(updat.to_id!)! == subviewData.ID {
             subviewData.sub_views?.append(updat.subview_data!)
+            hostUpdates.remove(at: 0)
         }
     }
 }
