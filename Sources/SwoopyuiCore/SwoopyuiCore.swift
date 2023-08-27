@@ -9,6 +9,10 @@ public struct MyView: View {
     @State var hostPort : Int
     
     @State var subviews: [SubView] = [SubView()]
+    
+    public init(hostPort: Int) {
+        self._hostPort = State(initialValue: hostPort)
+    }
     public var body: some View {
         VStack {
             
