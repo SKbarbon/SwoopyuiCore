@@ -23,9 +23,7 @@ struct ViewGenerator: View {
                 if hostUpdates[0].action == "add_subview" {
                     addNewSubview(updat:  hostUpdates[0])
                 } else if hostUpdates[0].action == "update_subview" {
-                    print("\n\n\n\n")
                     print(hostUpdates[0])
-                    print("\n\n\n\n")
                     updateSubviewProps(updat: hostUpdates[0])
                 } else {
                     print("Unknown update: \(hostUpdates[0])")
@@ -38,6 +36,7 @@ struct ViewGenerator: View {
     }
     func updateSubviewProps (updat:SubViewUpdateRequest) {
         if subviewData.sub_views != [] && subviewData.sub_views != nil {
+            print("This id is matched!")
             var newSubviewsList : [SubView] = []
             for sv in subviewData.sub_views! {
                 if sv.ID == updat.subview_data?.ID {
