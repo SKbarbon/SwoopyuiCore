@@ -9,7 +9,7 @@ import Foundation
 
 func runHostTargetFunction (port:Int) {
     // Create a URL
-    if let url = URL(string: getHostUrl(port: port, target: "start_target_function")) {
+    if let url = URL(string: getHostUrl(port: port, target: "target_function")) {
         // Create a URLSession
         let session = URLSession.shared
         

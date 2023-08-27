@@ -8,7 +8,7 @@ import SwiftUI
 public struct SwoopyuiInitApp: View {
     @State var hostPort : Int
     
-    @State var startApp : Bool = false // This will be true after running host's target function.
+    @State var appStarted : Bool = false // This will be true after running host's target function.
     
     @State var subviews: [SubView] = [SubView()]
     @State var hostUpdates : [SubViewUpdateRequest] = [SubViewUpdateRequest()]
@@ -23,8 +23,9 @@ public struct SwoopyuiInitApp: View {
             }
         }
         .onAppear() {
-            if (startApp == false) {
+            if (appStarted == false) {
                 runHostTargetFunction(port: hostPort)
+                appStarted = true
             }
             httpGetUpdatesRequest()
         }
