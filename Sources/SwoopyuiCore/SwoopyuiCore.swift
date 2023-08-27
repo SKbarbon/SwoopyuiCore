@@ -65,16 +65,6 @@ public struct SwoopyuiInitApp: View {
                 for u in jsonProduct.updts! {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
-                    } else if u.action == "update_subview" {
-                        var newSubviewsList : [SubView] = []
-                        for sv in subviews {
-                            if sv.ID == u.subview_data?.ID {
-                                newSubviewsList.append(u.subview_data!)
-                            } else {
-                                newSubviewsList.append(sv)
-                            }
-                        }
-                        subviews = newSubviewsList
                     } else {
                         hostUpdates.append(u)
                     }
