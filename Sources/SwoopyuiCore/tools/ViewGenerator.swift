@@ -40,12 +40,12 @@ struct ViewGenerator: View {
             for sv in subviewData.sub_views! {
                 if sv.ID == updat.subview_data?.ID {
                     newSubviewsList.append(updat.subview_data!)
+                    hostUpdates.remove(at: 0)
                 } else {
                     newSubviewsList.append(sv)
                 }
             }
             subviewData.sub_views = newSubviewsList
-            hostUpdates.remove(at: 0)
         }
     }
     func addNewSubview (updat:SubViewUpdateRequest) {
