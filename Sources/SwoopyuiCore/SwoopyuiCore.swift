@@ -99,7 +99,6 @@ public struct SwoopyuiInitApp: View {
             if sv.ID == updat.subview_data?.ID {
                 newSubviewsList.append(updat.subview_data!)
                 foundIt = true
-                hostUpdates.remove(at: num)
             } else {
                 newSubviewsList.append(sv)
             }
