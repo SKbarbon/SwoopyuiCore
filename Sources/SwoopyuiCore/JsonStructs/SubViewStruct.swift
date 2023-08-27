@@ -12,10 +12,11 @@ import Foundation
 struct SubView : Decodable, Equatable {
     var ID : Int?
     var update_id: Int?
+    var name: String?
     var props: SubViewProps?
     var sub_views: [SubView]?
 }
 
 struct SubViewProps : Decodable, Equatable {
-    
+    var content: String?
 }

@@ -5,17 +5,20 @@ import Foundation
 import SwiftUI
 
 
-public struct MyView: View {
+public struct SwoopyuiInitApp: View {
     @State var hostPort : Int
     
     @State var subviews: [SubView] = [SubView()]
+    @State var hostUpdates : [SubViewUpdateRequest] = [SubViewUpdateRequest()]
     
     public init(hostPort: Int) {
         self._hostPort = State(initialValue: hostPort)
     }
     public var body: some View {
         VStack {
-            
+            ForEach (subviews, id: \.update_id) {sbv in
+                ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates)
+            }
         }
         .onAppear() {
             httpGetUpdatesRequest()
@@ -52,9 +55,13 @@ public struct MyView: View {
         if let jsonData = jsonString.data(using: .utf8) {
             do {
                 // Decode JSON data into the Person struct
-                let jsonProduct = try JSONDecoder().decode(SubViewUpdateRequest.self, from: jsonData)
-                if jsonProduct.action == "add_subview" {
-                    subviews.append(jsonProduct.subview_data!)
+                let jsonProduct = try JSONDecoder().decode(NewHostUpdates.self, from: jsonData)
+                for u in jsonProduct.updts! {
+                    if (u.action == "add_subview" && u.to_id == "main") {
+                        subviews.append(u.subview_data!)
+                    } else {
+                        hostUpdates.append(u)
+                    }
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
