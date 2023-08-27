@@ -13,6 +13,8 @@ func getHostUrl (port:Int, target:String) -> String {
         return "http://localhost:\(port)/start_target_function"
     } else if target == "get_updates" {
         return "http://localhost:\(port)/get_updates"
+    } else if target == "push_update" {
+        return "http://localhost:\(port)/push_update"
     }
     return "http://localhost:\(port)"
 }

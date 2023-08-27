@@ -10,14 +10,15 @@ import SwiftUI
 struct ViewGenerator: View {
     @State var subviewData : SubView
     @Binding var hostUpdates : [SubViewUpdateRequest]
+    @State var hostPort : String
     var body: some View {
         VStack {
             if  subviewData.name == "Text" {
                 TheTextView(subviewData: $subviewData)
             } else if subviewData.name == "VStack" {
-                TheVstackView (subviewData: $subviewData, subviewupdates: $hostUpdates)
+                TheVstackView (subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "NavigationSplitView" {
-                TheNavigationSplitView(subviewData: $subviewData, subviewupdates: $hostUpdates)
+                TheNavigationSplitView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
         }
         .onChange (of: hostUpdates){_ in

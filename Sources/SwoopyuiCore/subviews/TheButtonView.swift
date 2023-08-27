@@ -7,21 +7,25 @@
 
 import SwiftUI
 
-struct TheNavigationSplitView: View {
+struct TheButtonView: View {
     @Binding var subviewData : SubView
     @Binding var subviewupdates : [SubViewUpdateRequest]
     @State var hostPort : String
     var body: some View {
-        NavigationSplitView {
+        Button (action: {
+            pushClientUpdate(hostPort: "\(hostPort)", args: [
+                "action" : "view_event",
+                "view_id" : "\(subviewData.ID!)",
+                "event_content" : [
+                    "name" : "on_click"
+                ]
+            ])
+        }) {
             ForEach (subviewData.sub_views!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
             }
-            .navigationTitle("\(subviewData.props?.title ?? "")")
-        } detail: {
-            ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
-                ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
-            }
-            .navigationTitle("\(subviewData.props?.detail_title ?? "")")
         }
     }
 }
+
+

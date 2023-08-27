@@ -21,7 +21,7 @@ public struct SwoopyuiInitApp: View {
         if appStarted {
             VStack {
                 ForEach (subviews, id: \.update_id) {sbv in
-                    ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates)
+                    ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates, hostPort: "\(hostPort)")
                 }
             }
             .onReceive(timer){_ in
