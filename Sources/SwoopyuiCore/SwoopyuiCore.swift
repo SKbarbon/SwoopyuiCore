@@ -47,13 +47,14 @@ public struct SwoopyuiInitApp: View {
             // Create a data task
             let task = session.dataTask(with: url) { (data, response, error) in
                 if let error = error {
+                    appStarted = false
                     print("Error: \(error)")
                     return
                 }
                 
                 if let data = data {
                     if let stringData = String(data: data, encoding: .utf8) {
-                        print(stringData)
+                        appStarted = true
                         loadJsonOfUpdateRequest(content: stringData)
                     }
                 }

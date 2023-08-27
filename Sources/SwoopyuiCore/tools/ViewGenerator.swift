@@ -24,6 +24,7 @@ struct ViewGenerator: View {
                     addNewSubview(updat:  hostUpdates[0])
                     hostUpdates.remove(at: 0)
                 } else if hostUpdates[0].action == "update_subview" {
+                    print(hostUpdates[0])
                     updateSubviewProps(updat: hostUpdates[0])
                     hostUpdates.remove(at: 0)
                 }
