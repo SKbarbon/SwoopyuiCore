@@ -17,11 +17,6 @@ struct ViewGenerator: View {
             } else if subviewData.name == "VStack" {
                 TheVstackView (subviewData: $subviewData, subviewupdates: $hostUpdates)
             }
-            
-            else {
-                Text("SwoopyUI have no view named '\(subviewData.name ?? "nil")'")
-                    .foregroundStyle(.red)
-            }
         }
         .onChange (of: hostUpdates){_ in
             if hostUpdates != [] {
