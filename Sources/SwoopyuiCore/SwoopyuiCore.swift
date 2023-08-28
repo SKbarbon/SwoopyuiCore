@@ -33,8 +33,8 @@ public struct SwoopyuiInitApp: View {
                 ProgressView()
             }
             .onAppear() {
-                runHostTargetFunction(port: hostPort)
                 pushStartupAppInfo()
+                runHostTargetFunction(port: hostPort)
                 appStarted = true
             }
         }
