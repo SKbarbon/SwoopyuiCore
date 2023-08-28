@@ -29,4 +29,5 @@ struct SubViewProps : Decodable, Equatable {
     var width : Int?
     var height: Int?
     var scrollMode : String?
+    var corner_radius: Int?
 }

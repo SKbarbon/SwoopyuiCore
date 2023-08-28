@@ -30,6 +30,11 @@ struct ViewGenerator: View {
             } else if subviewData.name == "HStack" {
                 TheHstackView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
+            
+            // Shapes views
+            else if subviewData.name == "RoundedRectangleShape" {
+                RoundedRectangleShapeView(subviewData: $subviewData)
+            }
         }
         .onChange (of: hostUpdates){_ in
             if hostUpdates != [] {
