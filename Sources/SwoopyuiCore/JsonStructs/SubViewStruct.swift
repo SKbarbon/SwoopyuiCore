@@ -16,6 +16,8 @@ struct SubView : Decodable, Equatable {
     var props: SubViewProps?
     var sub_views: [SubView]?
     var sub_views2: [SubView]?
+    var sub_views3: [SubView]?
+    var sub_views4: [SubView]?
 }
 
 struct SubViewProps : Decodable, Equatable {

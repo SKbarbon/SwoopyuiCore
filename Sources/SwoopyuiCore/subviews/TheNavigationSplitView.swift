@@ -19,6 +19,11 @@ struct TheNavigationSplitView: View {
                 }
             }
             .navigationTitle("\(subviewData.props?.title ?? "")")
+            .toolbar {
+                ForEach (subviewData.sub_views3!, id: \.update_id) {subv in
+                    ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+                }
+            }
         } detail: {
             VStack {
                 ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
@@ -26,6 +31,11 @@ struct TheNavigationSplitView: View {
                 }
             }
             .navigationTitle("\(subviewData.props?.detail_title ?? "")")
+            .toolbar {
+                ForEach (subviewData.sub_views4!, id: \.update_id) {subv in
+                    ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+                }
+            }
         }
     }
 }
