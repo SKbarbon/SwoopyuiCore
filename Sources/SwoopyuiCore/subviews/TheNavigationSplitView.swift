@@ -13,13 +13,17 @@ struct TheNavigationSplitView: View {
     @State var hostPort : String
     var body: some View {
         NavigationSplitView {
-            ForEach (subviewData.sub_views!, id: \.update_id) {subv in
-                ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+            VStack {
+                ForEach (subviewData.sub_views!, id: \.update_id) {subv in
+                    ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+                }
             }
             .navigationTitle("\(subviewData.props?.title ?? "")")
         } detail: {
-            ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
-                ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+            VStack {
+                ForEach (subviewData.sub_views2!, id: \.update_id) {subv in
+                    ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+                }
             }
             .navigationTitle("\(subviewData.props?.detail_title ?? "")")
         }
