@@ -28,4 +28,5 @@ struct SubViewProps : Decodable, Equatable {
     var resizeable: Bool?
     var width : Int?
     var height: Int?
+    var scrollMode : String?
 }

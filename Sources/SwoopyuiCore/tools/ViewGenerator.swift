@@ -25,6 +25,8 @@ struct ViewGenerator: View {
                 TheNavigationLink(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "TextField" {
                 TheTextFieldView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "ScrollView" {
+                TheScrollView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
         }
         .onChange (of: hostUpdates){_ in
