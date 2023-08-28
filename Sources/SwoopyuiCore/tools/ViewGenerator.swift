@@ -33,6 +33,8 @@ struct ViewGenerator: View {
                 TheColorView(subviewData:  $subviewData)
             } else if subviewData.name == "TheListView" {
                 TheListView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "Sheet" {
+                TheSheetView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views
