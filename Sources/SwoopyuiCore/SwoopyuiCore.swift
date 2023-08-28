@@ -34,6 +34,7 @@ public struct SwoopyuiInitApp: View {
             }
             .onAppear() {
                 pushStartupAppInfo()
+                Thread.sleep(forTimeInterval: 0.3)
                 runHostTargetFunction(port: hostPort)
                 appStarted = true
             }
