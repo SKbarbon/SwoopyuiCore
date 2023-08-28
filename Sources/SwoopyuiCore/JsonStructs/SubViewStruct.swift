@@ -36,4 +36,5 @@ struct SubViewProps : Decodable, Equatable {
     var bgcolor : String?
     var icon_name: String?
     var icon_color : String?
+    var icon_size: Int?
 }

@@ -13,11 +13,11 @@ struct TheLabelView: View {
     var body: some View {
         Label(
             title: {
-                Text("\(subviewData.props?.content ?? "")")
+                Text("\(subviewData.props?.content ?? "")").font(.system(size: CGFloat(subviewData.props?.size ?? 18)))
                     .foregroundStyle(getColorByString(color: subviewData.props?.color ?? "primery"))
             },
             icon: {
-                Image (systemName: subviewData.props?.icon_name ?? "")
+                Image (systemName: subviewData.props?.icon_name ?? "").font(.system(size: CGFloat(subviewData.props?.icon_size ?? 18)))
                     .foregroundStyle(getColorByString(color: subviewData.props?.icon_color ?? "primery"))
             }
         )
