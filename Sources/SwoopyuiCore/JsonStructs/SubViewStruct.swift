@@ -34,4 +34,6 @@ struct SubViewProps : Decodable, Equatable {
     var corner_radius: Int?
     var presented : Bool?
     var bgcolor : String?
+    var icon_name: String?
+    var icon_color : String?
 }

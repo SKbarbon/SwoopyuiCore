@@ -41,6 +41,8 @@ struct ViewGenerator: View {
                 ElevatedButton(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "TextButton" {
                 TextButtonView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "TheLabelView" {
+                TheLabelView(subviewData: $subviewData, subviewupdates: $hostUpdates)
             }
             
             // Shapes views
