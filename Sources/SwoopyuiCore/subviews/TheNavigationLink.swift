@@ -17,8 +17,10 @@ struct TheNavigationLink: View {
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
             }
         }){
-            ForEach (subviewData.sub_views!, id: \.update_id) {subv in
-                ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+            VStack {
+                ForEach (subviewData.sub_views!, id: \.update_id) {subv in
+                    ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
+                }
             }
         }
     }
