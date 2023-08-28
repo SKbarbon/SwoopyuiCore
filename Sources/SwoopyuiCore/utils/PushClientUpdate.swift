@@ -37,7 +37,7 @@ func pushClientUpdate (hostPort:String, args: [String: Any]) {
         makeHttpPostRequest(with: dictionary, to: url) { data, response, error in
             if let data = data {
                 let responseString = String(data: data, encoding: .utf8)
-                print("Response: \(responseString ?? "")")
+//                print("Response: \(responseString ?? "")")
             }
             if let error = error {
                 print("Error: \(error)")

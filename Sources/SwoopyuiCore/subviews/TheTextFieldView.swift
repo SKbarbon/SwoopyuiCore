@@ -20,11 +20,17 @@ struct TheTextFieldView: View {
                 .onChange (of: textfildContent){_ in
                     pushNewEdits()
             }
+                .onAppear() {
+                    textfildContent = "\(subviewData.props?.content ?? "")"
+                }
         } else if subviewData.props?.resizeable == false {
             TextField("\(subviewData.props?.placeholder ?? "")", text: $textfildContent)
                 .onChange (of: textfildContent){_ in
                     pushNewEdits()
             }
+                .onAppear() {
+                    textfildContent = "\(subviewData.props?.content ?? "")"
+                }
         }
     }
     func pushNewEdits () {
