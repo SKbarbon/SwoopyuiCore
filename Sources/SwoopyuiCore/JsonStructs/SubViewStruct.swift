@@ -31,4 +31,5 @@ struct SubViewProps : Decodable, Equatable {
     var scrollMode : String?
     var corner_radius: Int?
     var presented : Bool?
+    var bgcolor : String?
 }
