@@ -24,7 +24,7 @@ struct ElevatedButton: View {
                     ZStack {
                         getColorByString(color: "\(subviewData.props?.bgcolor ?? "primery")")
                             .frame(width: CGFloat(subviewData.props?.width ?? 30), height: CGFloat(subviewData.props?.height ?? 30))
-                            .cornerRadius(12)
+                            .cornerRadius(CGFloat(subviewData.props?.corner_radius ?? 12))
                         Text("\(subviewData.props?.content ?? "")").bold()
                             .foregroundColor(getColorByString(color: subviewData.props?.color ?? "primery"))
             }

@@ -16,6 +16,7 @@ struct TheTextFieldView: View {
     var body: some View {
         if subviewData.props?.resizeable == true {
             TextField("\(subviewData.props?.placeholder ?? "")", text: $textfildContent)
+                .foregroundStyle(getColorByString(color: subviewData.props?.color ?? "primery"))
                 .frame(width: CGFloat(subviewData.props?.width ?? 100), height: CGFloat(subviewData.props?.height ?? 40))
                 .onChange (of: textfildContent){_ in
                     pushNewEdits()
@@ -25,6 +26,7 @@ struct TheTextFieldView: View {
                 }
         } else if subviewData.props?.resizeable == false {
             TextField("\(subviewData.props?.placeholder ?? "")", text: $textfildContent)
+                .foregroundStyle(getColorByString(color: subviewData.props?.color ?? "primery"))
                 .onChange (of: textfildContent){_ in
                     pushNewEdits()
             }
