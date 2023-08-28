@@ -35,6 +35,8 @@ struct ViewGenerator: View {
                 TheListView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "Sheet" {
                 TheSheetView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "Spacer" {
+                SpacerView(subviewData: $subviewData)
             }
             
             // Shapes views
