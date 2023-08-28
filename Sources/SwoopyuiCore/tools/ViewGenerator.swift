@@ -27,6 +27,8 @@ struct ViewGenerator: View {
                 TheTextFieldView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "ScrollView" {
                 TheScrollView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "HStack" {
+                TheHstackView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
         }
         .onChange (of: hostUpdates){_ in
