@@ -3,7 +3,7 @@
 
 import Foundation
 import SwiftUI
-
+import UIKit
 
 public struct SwoopyuiInitApp: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -34,6 +34,7 @@ public struct SwoopyuiInitApp: View {
             }
             .onAppear() {
                 runHostTargetFunction(port: hostPort)
+                pushStartupAppInfo()
                 appStarted = true
             }
         }
@@ -105,6 +106,15 @@ public struct SwoopyuiInitApp: View {
         }
         subviews = newSubviewsList
         return foundIt
+    }
+    
+    func pushStartupAppInfo () {
+        pushClientUpdate(hostPort: String(hostPort), args: [
+            "action" : "startup_app_info",
+            "content" : [
+                "platform" : "\(UIDevice.current.systemName)"
+            ]
+        ])
     }
 }
 
