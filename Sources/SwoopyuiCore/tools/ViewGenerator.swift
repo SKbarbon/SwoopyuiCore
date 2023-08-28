@@ -29,6 +29,8 @@ struct ViewGenerator: View {
                 TheScrollView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "HStack" {
                 TheHstackView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "ColorView" {
+                TheColorView(subviewData:  $subviewData)
             }
             
             // Shapes views
