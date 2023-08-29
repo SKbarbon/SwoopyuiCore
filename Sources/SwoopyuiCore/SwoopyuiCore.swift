@@ -111,12 +111,21 @@ public struct SwoopyuiInitApp: View {
     }
     
     func pushStartupAppInfo () {
+        #if os(macOS)
+        pushClientUpdate(hostPort: String(hostPort), args: [
+            "action" : "startup_app_info",
+            "content" : [
+                "platform" : "macOS"
+            ]
+        ])
+        #else
         pushClientUpdate(hostPort: String(hostPort), args: [
             "action" : "startup_app_info",
             "content" : [
                 "platform" : "\(UIDevice.current.systemName)"
             ]
         ])
+        #endif
     }
     func processClearingStoredUpdatesMethod () {
         var all_latest_ids_with_updateids : [Int:Int] = [:]
