@@ -47,6 +47,8 @@ struct ViewGenerator: View {
                 TheIconView(subviewData: $subviewData, subviewupdates: $hostUpdates)
             } else if subviewData.name == "ContextMenu" {
                 TheContextMenu(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "LabeledButton" {
+                LabeledButton(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views
