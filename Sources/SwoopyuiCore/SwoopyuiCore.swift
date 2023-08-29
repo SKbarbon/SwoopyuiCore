@@ -75,6 +75,7 @@ public struct SwoopyuiInitApp: View {
                 // Decode JSON data into the Person struct
                 let jsonProduct = try JSONDecoder().decode(NewHostUpdates.self, from: jsonData)
                 var num = 0
+                hostUpdates.removeAll()
                 for u in jsonProduct.updts! {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
@@ -87,7 +88,6 @@ public struct SwoopyuiInitApp: View {
                     }
                     num = num + 1
                 }
-                processClearingStoredUpdatesMethod()
             } catch {
                 print("Error decoding JSON: \(error)")
             }
