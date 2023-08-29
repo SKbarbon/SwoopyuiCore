@@ -27,17 +27,6 @@ public struct SwoopyuiInitApp: View {
             .onReceive(timer){_ in
                 httpGetUpdatesRequest()
             }
-            .onChange (of: hostUpdates) {_ in
-                // Check if the updates does not updated so clear it.
-                let cleaingThread = Thread {
-                    let lastClone = hostUpdates
-                    Thread.sleep(forTimeInterval: 2)
-                    if (lastClone == hostUpdates) {
-                        hostUpdates.removeAll()
-                    }
-                }
-                cleaingThread.start()
-            }
         } else {
             HStack {
                 Text("Connecting to host..")
@@ -87,6 +76,7 @@ public struct SwoopyuiInitApp: View {
                 let jsonProduct = try JSONDecoder().decode(NewHostUpdates.self, from: jsonData)
                 var num = 0
                 
+                hostUpdates.removeAll()
                 for u in jsonProduct.updts! {
                     if (u.action == "add_subview" && u.to_id == "main") {
                         subviews.append(u.subview_data!)
