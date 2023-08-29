@@ -51,6 +51,8 @@ struct ViewGenerator: View {
                 LabeledButton(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "Menu" {
                 TheMenuView (subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "ScrollingTabView" {
+                TheScrollingTabView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views
