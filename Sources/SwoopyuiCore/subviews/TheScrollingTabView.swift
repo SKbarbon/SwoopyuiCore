@@ -12,6 +12,9 @@ struct TheScrollingTabView: View {
     @Binding var subviewupdates : [SubViewUpdateRequest]
     @State var hostPort : String
     var body: some View {
+        #if os(macOS)
+        
+        #else
         TabView {
             ForEach (subviewData.sub_views!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
@@ -19,5 +22,7 @@ struct TheScrollingTabView: View {
         }
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
+        
+        #endif
     }
 }
