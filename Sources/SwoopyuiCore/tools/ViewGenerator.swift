@@ -57,7 +57,7 @@ struct ViewGenerator: View {
                 if hostUpdates[0].action == "add_subview" {
                     addNewSubview(updat:  hostUpdates[0])
                 } else if hostUpdates[0].action == "update_subview" {
-                    print(hostUpdates[0])
+                    print("Host updates: \(hostUpdates[0])")
                     updateSubviewProps(updat: hostUpdates[0])
                 } else {
                     print("Unknown update: \(hostUpdates[0])")
