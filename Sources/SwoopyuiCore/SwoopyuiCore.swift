@@ -20,6 +20,9 @@ public struct SwoopyuiInitApp: View {
     public var body: some View {
         if appStarted {
             VStack {
+                Button ("Print all updates stored") {
+                    print(hostUpdates)
+                }
                 ForEach (subviews, id: \.update_id) {sbv in
                     ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates, hostPort: "\(hostPort)")
                 }
