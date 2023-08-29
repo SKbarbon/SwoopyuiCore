@@ -20,9 +20,6 @@ public struct SwoopyuiInitApp: View {
     public var body: some View {
         if appStarted {
             VStack {
-                Button ("clear all updates") {
-                    hostUpdates.removeAll()
-                }
                 ForEach (subviews, id: \.update_id) {sbv in
                     ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates, hostPort: "\(hostPort)")
                 }
@@ -90,6 +87,7 @@ public struct SwoopyuiInitApp: View {
                     }
                     num = num + 1
                 }
+                processClearingStoredUpdatesMethod()
             } catch {
                 print("Error decoding JSON: \(error)")
             }
@@ -119,6 +117,30 @@ public struct SwoopyuiInitApp: View {
                 "platform" : "\(UIDevice.current.systemName)"
             ]
         ])
+    }
+    func processClearingStoredUpdatesMethod () {
+        var all_latest_ids_with_updateids : [Int:Int] = [:]
+        var newUpdatesList : [SubViewUpdateRequest] = []
+        for u in hostUpdates {
+            if u.action == "update_subview" {
+                let currentID = u.subview_data?.ID!
+                let currentUpdateId = u.subview_data?.update_id!
+                all_latest_ids_with_updateids[currentID!] = currentUpdateId!
+            }
+        }
+        
+        for uu in hostUpdates {
+            if uu.action == "update_subview" {
+                let currentID = uu.subview_data?.ID!
+                let currentUpdateId = uu.subview_data?.update_id!
+                if all_latest_ids_with_updateids[currentID!] == currentUpdateId {
+                    newUpdatesList.append(uu)
+                }
+            } else {
+                newUpdatesList.append(uu)
+            }
+        }
+        hostUpdates = newUpdatesList
     }
 }
 
