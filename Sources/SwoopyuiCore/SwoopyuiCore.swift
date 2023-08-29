@@ -3,7 +3,6 @@
 
 import Foundation
 import SwiftUI
-import UIKit
 
 public struct SwoopyuiInitApp: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
