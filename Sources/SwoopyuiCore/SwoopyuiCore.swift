@@ -27,6 +27,17 @@ public struct SwoopyuiInitApp: View {
             .onReceive(timer){_ in
                 httpGetUpdatesRequest()
             }
+            .onChange (of: hostUpdates) {_ in
+                // Check if the updates does not updated so clear it.
+                let cleaingThread = Thread {
+                    let lastClone = hostUpdates
+                    Thread.sleep(forTimeInterval: 2)
+                    if (lastClone == hostUpdates) {
+                        hostUpdates.removeAll()
+                    }
+                }
+                cleaingThread.start()
+            }
         } else {
             HStack {
                 Text("Connecting to host..")
