@@ -30,7 +30,8 @@ struct TheScrollingTabView: View {
             for u in subviewupdates {
                 if u.action == "tabview_selection" {
                     if u.parent_id == subviewData.ID {
-                        currentSelection = u.subview_id ?? 0
+                        print("Navigated!")
+                        currentSelection = u.subview_id!
                         subviewupdates.remove(at: num)
                     }
                 }
