@@ -53,7 +53,7 @@ struct ViewGenerator: View {
                 TheMenuView (subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "ScrollingTabView" {
                 #if os(macOS)
-                Text("Scroll is not supported")
+                Text("Tabview is not supported in macOS")
                 #else
                 TheScrollingTabView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
                 #endif

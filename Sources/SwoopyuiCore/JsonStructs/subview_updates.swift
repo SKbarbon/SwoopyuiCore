@@ -12,6 +12,10 @@ struct SubViewUpdateRequest : Decodable, Equatable {
     // 'add' action data
     var to_id: String?
     var subview_data: SubView?
+    
+    // reverse data
+    var parent_id : Int?
+    var subview_id : Int?
 }
 
 
