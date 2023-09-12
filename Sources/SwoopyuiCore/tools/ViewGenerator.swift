@@ -57,6 +57,8 @@ struct ViewGenerator: View {
                 #else
                 TheScrollingTabView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
                 #endif
+            } else if subviewData.name == "NavigationStack" {
+                TheNavigationStack(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views
