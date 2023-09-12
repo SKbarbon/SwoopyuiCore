@@ -26,12 +26,15 @@ struct TheScrollingTabView: View {
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .onChange(of: subviewupdates) {_ in
+            var num = 0
             for u in subviewupdates {
                 if u.action == "tabview_selection" {
                     if u.parent_id == subviewData.ID {
                         currentSelection = u.subview_id ?? 0
+                        subviewupdates.remove(at: num)
                     }
                 }
+                num = num + 1
             }
         }
         #endif
