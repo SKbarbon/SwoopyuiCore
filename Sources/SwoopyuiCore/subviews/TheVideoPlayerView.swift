@@ -63,6 +63,24 @@ struct TheVideoPlayerView: View {
     }
 }
 
+
+
+#if macOS
+struct CustomizedVideoPlayer : View {
+    @State var avPlayer = AVPlayer()
+    var body: some View {
+        VideoPlayer(player: avPlayer)
+    }
+    func updatePlayer(url: URL, same_position:Bool) {
+        let currentTime = avPlayer.currentTime()
+        let playerItem = AVPlayerItem(url: url)
+        avPlayer.replaceCurrentItem(with: playerItem)
+        if same_position{
+            avPlayer.seek(to: currentTime)
+        }
+    }
+}
+#else
 struct CustomizedVideoPlayer: UIViewControllerRepresentable {
     @State var avPlayer : AVPlayer = AVPlayer()
     @State var pipController: AVPictureInPictureController?
@@ -101,5 +119,7 @@ struct CustomizedVideoPlayer: UIViewControllerRepresentable {
         pipController?.stopPictureInPicture()
     }
 }
+
+#endif
 
 
