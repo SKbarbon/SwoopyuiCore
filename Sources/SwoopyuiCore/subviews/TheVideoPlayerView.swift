@@ -14,12 +14,11 @@ struct TheVideoPlayerView: View {
     @Binding var subviewupdates : [SubViewUpdateRequest]
     
     // experiance vars
-    @State var currentVidPlayer : CustomizedVideoPlayer = CustomizedVideoPlayer()
     @State var currntAvPlayer = AVPlayer()
     @State var loaded = false
     var body: some View {
         if loaded {
-            currentVidPlayer
+            VideoPlayer(player: currntAvPlayer)
                 .frame(width: CGFloat(subviewData.props?.width ?? 150), height: CGFloat(subviewData.props?.height ?? 150))
                 .onChange(of: subviewupdates){_ in
                     checkSubviewUpdates()
@@ -34,7 +33,6 @@ struct TheVideoPlayerView: View {
                 .frame(width: CGFloat(subviewData.props?.width ?? 150), height: CGFloat(subviewData.props?.height ?? 150))
                 .onAppear() {
                     currntAvPlayer = AVPlayer(url: URL(string: subviewData.props?.link ?? "")!)
-                    currentVidPlayer = CustomizedVideoPlayer(avPlayer: currntAvPlayer)
                     loaded = true
                     currntAvPlayer.play()
                 }
@@ -45,7 +43,7 @@ struct TheVideoPlayerView: View {
         for u in subviewupdates {
             if u.action == "change_video_link" {
                 if u.parent_id == subviewData.ID {
-                    currentVidPlayer.updatePlayer(url: URL(string: u.new_link!)!, same_position: u.same_position!)
+                    updatePlayer(url: URL(string: u.new_link!)!, same_position: u.same_position!)
                     subviewupdates.remove(at: num)
                 }
             } else if u.action == "change_video_state" {
@@ -61,15 +59,8 @@ struct TheVideoPlayerView: View {
             num = num + 1
         }
     }
-}
-
-
-struct CustomizedVideoPlayer : View {
-    @State var avPlayer = AVPlayer()
-    var body: some View {
-        VideoPlayer(player: avPlayer)
-    }
     func updatePlayer(url: URL, same_position:Bool) {
+        let avPlayer = currntAvPlayer
         let currentTime = avPlayer.currentTime()
         let playerItem = AVPlayerItem(url: url)
         avPlayer.replaceCurrentItem(with: playerItem)
