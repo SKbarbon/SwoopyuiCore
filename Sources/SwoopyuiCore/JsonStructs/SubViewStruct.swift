@@ -37,4 +37,5 @@ struct SubViewProps : Decodable, Equatable {
     var icon_name: String?
     var icon_color : String?
     var icon_size: Int?
+    var link : String?
 }

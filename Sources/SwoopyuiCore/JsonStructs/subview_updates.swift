@@ -16,6 +16,9 @@ struct SubViewUpdateRequest : Decodable, Equatable {
     // reverse data
     var parent_id : Int?
     var subview_id : Int?
+    var new_link : String?
+    var same_position : Bool?
+    var new_video_state : String? // 'stop' or 'play'
 }
 
 
