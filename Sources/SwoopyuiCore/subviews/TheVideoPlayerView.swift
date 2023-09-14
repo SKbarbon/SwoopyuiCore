@@ -43,6 +43,7 @@ struct TheVideoPlayerView: View {
         for u in subviewupdates {
             if u.action == "change_video_link" {
                 if u.parent_id == subviewData.ID {
+                    print("change_video_link!!!!!!!")
                     updatePlayer(url: URL(string: u.new_link!)!, same_position: u.same_position!)
                     subviewupdates.remove(at: num)
                 }
