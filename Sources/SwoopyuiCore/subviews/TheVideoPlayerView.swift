@@ -64,7 +64,8 @@ struct TheVideoPlayerView: View {
                 if u.parent_id == subviewData.ID {
                     width = u.width!
                     height = u.height!
-                    subviewupdates.remove(at: num)
+                    
+                    if subviewupdates.count > num {subviewupdates.remove(at: num)}
                 }
             }
             num = num + 1
