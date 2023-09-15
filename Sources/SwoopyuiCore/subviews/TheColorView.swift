@@ -10,10 +10,12 @@ import SwiftUI
 struct TheColorView: View {
     @Binding var subviewData : SubView
     var body: some View {
-        VStack {
+        ZStack {
             getColorByString(color: "\(subviewData.props?.color ?? "primery")")
                 .frame(width: CGFloat(subviewData.props?.width ?? 100), height: CGFloat(subviewData.props?.height ?? 100))
                 .cornerRadius(CGFloat(subviewData.props?.corner_radius ?? 0))
+            VStack {}
+                .frame(width: CGFloat(subviewData.props?.width ?? 100), height: CGFloat(subviewData.props?.height ?? 100))
         }
     }
 }
