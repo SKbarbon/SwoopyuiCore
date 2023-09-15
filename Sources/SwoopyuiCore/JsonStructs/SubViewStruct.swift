@@ -38,4 +38,5 @@ struct SubViewProps : Decodable, Equatable {
     var icon_color : String?
     var icon_size: Int?
     var link : String?
+    var padding: Int?
 }

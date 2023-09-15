@@ -54,6 +54,8 @@ struct ViewGenerator: View {
             } else if subviewData.name == "ScrollingTabView" {
                 #if os(macOS)
                 Text("Tabview is not supported in macOS")
+                    .bold()
+                    .foregroundStyle(.red)
                 #else
                 TheScrollingTabView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
                 #endif
@@ -63,6 +65,8 @@ struct ViewGenerator: View {
                 TheVideoPlayerView(subviewData: $subviewData, subviewupdates: $hostUpdates)
             } else if subviewData.name == "GeometryReaderView" {
                 GeometryReaderView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "ZStack" {
+                TheZstackView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views

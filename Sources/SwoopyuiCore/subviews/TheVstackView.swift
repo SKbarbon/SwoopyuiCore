@@ -16,6 +16,6 @@ struct TheVstackView: View {
             ForEach (subviewData.sub_views!, id: \.update_id) {subv in
                 ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
             }
-        }
+        }.padding(CGFloat(subviewData.props?.padding ?? 0))
     }
 }
