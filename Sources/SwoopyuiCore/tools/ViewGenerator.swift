@@ -36,7 +36,7 @@ struct ViewGenerator: View {
             } else if subviewData.name == "Sheet" {
                 TheSheetView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "Spacer" {
-                SpacerView(subviewData: $subviewData)
+                Spacer()
             } else if subviewData.name == "ElevatedButton" {
                 ElevatedButton(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "TextButton" {
