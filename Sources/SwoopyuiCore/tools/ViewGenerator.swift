@@ -67,6 +67,8 @@ struct ViewGenerator: View {
                 GeometryReaderView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "ZStack" {
                 TheZstackView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
+            } else if subviewData.name == "Toggle" {
+                TheToggleView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views

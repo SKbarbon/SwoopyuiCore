@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TheSwitchView: View {
+struct TheToggleView: View {
     @Binding var subviewData : SubView
     @Binding var subviewupdates : [SubViewUpdateRequest]
     @State var hostPort : String
