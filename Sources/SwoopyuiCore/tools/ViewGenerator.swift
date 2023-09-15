@@ -61,6 +61,8 @@ struct ViewGenerator: View {
                 TheNavigationStack(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             } else if subviewData.name == "AV_VideoPlayer" {
                 TheVideoPlayerView(subviewData: $subviewData, subviewupdates: $hostUpdates)
+            } else if subviewData.name == "GeometryReaderView" {
+                GeometryReaderView(subviewData: $subviewData, subviewupdates: $hostUpdates, hostPort: hostPort)
             }
             
             // Shapes views
