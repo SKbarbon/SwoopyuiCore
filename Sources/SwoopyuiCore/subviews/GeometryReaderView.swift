@@ -18,6 +18,17 @@ struct GeometryReaderView: View {
                     ViewGenerator(subviewData: subv, hostUpdates: $subviewupdates, hostPort: hostPort)
                 }
             }
+            .onAppear() {
+                pushClientUpdate(hostPort: "\(hostPort)", args: [
+                    "action" : "view_event",
+                    "view_id" : "\(subviewData.ID!)",
+                    "event_content" : [
+                        "name" : "on_resize",
+                        "width" : reader.size.width,
+                        "height" : reader.size.height
+                    ]
+                ])
+            }
             .onChange(of: reader.size){_ in
                 pushClientUpdate(hostPort: "\(hostPort)", args: [
                     "action" : "view_event",
