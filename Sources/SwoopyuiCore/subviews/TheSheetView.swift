@@ -14,9 +14,9 @@ struct TheSheetView: View {
     
     @State var isSheetPresented = false
     var body: some View {
-        VStack {}
+        Text("")
         .onAppear() {
-            isSheetPresented = subviewData.props?.presented ?? false
+            isSheetPresented = subviewData.props?.presented ?? true
         }
         .sheet (isPresented: $isSheetPresented) {
             ForEach (subviewData.sub_views!, id: \.update_id) {subv in
