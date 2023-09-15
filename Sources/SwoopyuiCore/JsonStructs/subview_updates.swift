@@ -19,6 +19,8 @@ struct SubViewUpdateRequest : Decodable, Equatable {
     var new_link : String?
     var same_position : Bool?
     var new_video_state : String? // 'stop' or 'play'
+    var width : Int?
+    var height : Int?
 }
 
 

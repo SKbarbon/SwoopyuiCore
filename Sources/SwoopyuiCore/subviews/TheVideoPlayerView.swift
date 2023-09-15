@@ -16,10 +16,13 @@ struct TheVideoPlayerView: View {
     // experiance vars
     @State var currntAvPlayer = AVPlayer()
     @State var loaded = false
+    @State var width : Int = 0
+    @State var height : Int = 0
+
     var body: some View {
         if loaded {
             VideoPlayer(player: currntAvPlayer)
-                .frame(width: CGFloat(subviewData.props?.width ?? 150), height: CGFloat(subviewData.props?.height ?? 150))
+                .frame(width: CGFloat(width), height: CGFloat(height))
                 .onChange(of: subviewupdates){_ in
                     checkSubviewUpdates()
                 }
@@ -32,6 +35,8 @@ struct TheVideoPlayerView: View {
             Text("Loading Video Player")
                 .frame(width: CGFloat(subviewData.props?.width ?? 150), height: CGFloat(subviewData.props?.height ?? 150))
                 .onAppear() {
+                    width = subviewData.props?.width ?? 150
+                    height = subviewData.props?.height ?? 150
                     currntAvPlayer = AVPlayer(url: URL(string: subviewData.props?.link ?? "")!)
                     loaded = true
                     currntAvPlayer.play()
@@ -43,7 +48,6 @@ struct TheVideoPlayerView: View {
         for u in subviewupdates {
             if u.action == "change_video_link" {
                 if u.parent_id == subviewData.ID {
-                    print("change_video_link!!!!!!!")
                     updatePlayer(url: URL(string: u.new_link!)!, same_position: u.same_position!)
                     subviewupdates.remove(at: num)
                 }
@@ -54,6 +58,12 @@ struct TheVideoPlayerView: View {
                     } else if u.new_video_state == "puase" {
                         currntAvPlayer.pause()
                     }
+                    subviewupdates.remove(at: num)
+                }
+            } else if u.action == "resize" {
+                if u.parent_id == subviewData.ID {
+                    width = u.width!
+                    height = u.height!
                     subviewupdates.remove(at: num)
                 }
             }
