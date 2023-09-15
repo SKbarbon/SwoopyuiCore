@@ -40,4 +40,6 @@ struct SubViewProps : Decodable, Equatable {
     var link : String?
     var padding: Int?
     var bold : Bool?
+    var activated : Bool?
+    var with_no_labels : Bool?
 }
