@@ -13,11 +13,13 @@ public struct SwoopyuiInitApp: View {
     @State var subviews: [SubView] = [SubView()]
     @State var hostUpdates : [SubViewUpdateRequest] = [SubViewUpdateRequest()]
     
+    @State var errorMessage = ""
+    
     public init(hostPort: Int) {
         self._hostPort = State(initialValue: hostPort)
     }
     public var body: some View {
-        if appStarted {
+        if appStarted && errorMessage == ""{
             VStack {
                 ForEach (subviews, id: \.update_id) {sbv in
                     ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates, hostPort: "\(hostPort)")
@@ -26,6 +28,10 @@ public struct SwoopyuiInitApp: View {
             .onReceive(timer){_ in
                 httpGetUpdatesRequest()
             }
+        } else if (appStarted && errorMessage != "") {
+            Label("\(errorMessage)", systemImage: "info.circle")
+                .bold()
+                .foregroundStyle(.red)
         } else {
             HStack {
                 Text("Connecting to host..")
@@ -83,6 +89,9 @@ public struct SwoopyuiInitApp: View {
                         if updateSubviewProps(updat: u, num: num) == false {
                             hostUpdates.append(u)
                         }
+                        
+                    } else if (u.action == "host_error") {
+                        
                     } else {
                         hostUpdates.append(u)
                     }

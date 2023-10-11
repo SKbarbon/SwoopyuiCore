@@ -12,6 +12,16 @@ func getHostUrl (port:Int, target:String) -> String {
     var urlName = ""
     if let variableValue = getenv("hostUrlName"), let value = String(validatingUTF8: variableValue) {
         urlName = "\(value)"
+    }else if let variableValue = getenv("custom_swoopyui_link"), let value = String(validatingUTF8: variableValue){
+        let theLink = value
+        if target == "target_function" {
+            return "\(theLink)/start_target_function"
+        } else if target == "get_updates" {
+            return "\(theLink)/get_updates"
+        } else if target == "push_update" {
+            return "\(theLink)/push_update"
+        }
+        return theLink
     } else {
         urlName = "localhost"
     }
