@@ -13,6 +13,9 @@ struct SubViewUpdateRequest : Decodable, Equatable {
     var to_id: String?
     var subview_data: SubView?
     
+    // error push data
+    var error_message : String?
+    
     // reverse data
     var parent_id : Int?
     var subview_id : Int?

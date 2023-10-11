@@ -91,7 +91,7 @@ public struct SwoopyuiInitApp: View {
                         }
                         
                     } else if (u.action == "host_error") {
-                        
+                        errorMessage = u.error_message ?? ""
                     } else {
                         hostUpdates.append(u)
                     }
