@@ -3,6 +3,7 @@
 
 import Foundation
 import SwiftUI
+import EventSource
 
 public struct SwoopyuiInitApp: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -25,8 +26,9 @@ public struct SwoopyuiInitApp: View {
                     ViewGenerator(subviewData: sbv, hostUpdates: $hostUpdates, hostPort: "\(hostPort)")
                 }
             }
-            .onReceive(timer){_ in
-                httpGetUpdatesRequest()
+            .onAppear() {
+                // Start the stram connection
+                connectToSreamUpdates()
             }
         } else if (appStarted && errorMessage != "") {
             Label("\(errorMessage)", systemImage: "info.circle")
@@ -38,13 +40,38 @@ public struct SwoopyuiInitApp: View {
                 ProgressView()
             }
             .onAppear() {
-                pushStartupAppInfo()
-                Thread.sleep(forTimeInterval: 0.3)
+                // Prepair for the connection before connecting.
                 runHostTargetFunction(port: hostPort)
+                Thread.sleep(forTimeInterval: 0.3)
+                pushStartupAppInfo()
                 appStarted = true
             }
         }
     }
+    func connectToSreamUpdates () {
+        Task {
+            let urlRequest = URLRequest(url: URL(string: getHostUrl(port: hostPort, target: "stream_updates"))!)
+            let eventSource = EventSource(request: urlRequest)
+            eventSource.connect()
+            
+            for await event in eventSource.events {
+                switch event {
+                case .open:
+                    print("Stream Connection was opened.")
+                case .error(let error):
+                    print("Received an error:", error.localizedDescription)
+                case .message(let message):
+                    loadJsonOfUpdateRequest(content: message.data!)
+//                    print("Received a message", message.data ?? "")
+                case .closed:
+                    print("Stream Connection was closed.")
+                    errorMessage = "Connection to host is closed."
+                }
+            }
+        }
+    }
+    
+    
     func httpGetUpdatesRequest () {
         // Create a URL
         if let url = URL(string: getHostUrl(port: hostPort, target: "get_updates")) {

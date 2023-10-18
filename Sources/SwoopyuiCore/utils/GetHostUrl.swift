@@ -20,6 +20,8 @@ func getHostUrl (port:Int, target:String) -> String {
             return "\(theLink)/get_updates"
         } else if target == "push_update" {
             return "\(theLink)/push_update"
+        } else if target == "stream_updates"{
+            return "\(theLink)/stream_updates"
         }
         return theLink
     } else {
@@ -32,6 +34,8 @@ func getHostUrl (port:Int, target:String) -> String {
         return "http://\(urlName):\(port)/get_updates"
     } else if target == "push_update" {
         return "http://\(urlName):\(port)/push_update"
+    } else if target == "stream_updates" {
+        return "http://\(urlName):\(port)/stream_updates"
     }
     return "http://localhost:\(port)"
 }
